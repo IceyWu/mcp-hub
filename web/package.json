@@ -1,5 +1,5 @@
 {
-  "name": "mcp-hub-web",
+  "name": "web",
   "type": "module",
   "version": "0.1.0",
   "description": "MCP Hub 主页 — 展示 MCP 服务与连接配置",
