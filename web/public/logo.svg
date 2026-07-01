@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80" fill="none">
+  <!-- M outer frame - double line sketch -->
+  <path d="M14 64 L22 10 L40 24 L58 10 L66 64" stroke="#1a1a1a" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M13.5 63.5 L21.5 9.5 L39.5 23.5 L57.5 9.5 L65.5 63.5" stroke="#1a1a1a" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" transform="translate(1,-1)"/>
+  <!-- H left vertical - sketch -->
+  <line x1="30" y1="30" x2="30" y2="58" stroke="#1a1a1a" stroke-width="2.8" stroke-linecap="round"/>
+  <line x1="30.5" y1="30" x2="30.5" y2="58" stroke="#1a1a1a" stroke-width="2.8" stroke-linecap="round" transform="translate(1,0)"/>
+  <!-- H right vertical - sketch -->
+  <line x1="50" y1="30" x2="50" y2="58" stroke="#1a1a1a" stroke-width="2.8" stroke-linecap="round"/>
+  <line x1="49.5" y1="30" x2="49.5" y2="58" stroke="#1a1a1a" stroke-width="2.8" stroke-linecap="round" transform="translate(-1,0)"/>
+  <!-- H horizontal bar -->
+  <path d="M28 46 L52 46" stroke="#1a1a1a" stroke-width="2.8" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,151 @@
+{"message":"connected.","label":"vite","level":"info"}
+{"message":"Generated 1ms","label":"types","level":"info"}
+{"message":"connected.","label":"vite","level":"info"}
+{"message":"Re-optimizing dependencies because vite config has changed","label":"vite","level":"info"}
+{"message":"Port 4321 is in use, trying another one...","label":"vite","level":"info"}
+{"message":" astro  v7.0.4 ready in 2183 ms\n┃ Local    http://localhost:4322/\n┃ Network  use --host to expose","label":"SKIP_FORMAT","level":"info"}
+{"message":"watching for file changes...","label":null,"level":"info"}
+{"message":"Configuration file added. Restarting...","label":null,"level":"info"}
+{"message":"connected.","label":"vite","level":"info"}
+{"message":"connected.","label":"vite","level":"info"}
+{"message":"Re-optimizing dependencies because vite config has changed","label":"vite","level":"info"}
+{"message":"server restarted.","label":"vite","level":"info"}
+{"message":"[200] / 17ms","label":null,"level":"info"}
+{"message":"[200] / 2ms","label":null,"level":"info"}
+{"message":"Configuration file updated. Restarting...","label":null,"level":"info"}
+{"message":"connected.","label":"vite","level":"info"}
+{"message":"connected.","label":"vite","level":"info"}
+{"message":"Re-optimizing dependencies because vite config has changed","label":"vite","level":"info"}
+{"message":"server restarted.","label":"vite","level":"info"}
+{"message":"[200] / 16ms","label":null,"level":"info"}
+{"message":"[200] / 4ms","label":null,"level":"info"}
+{"message":"Configuration file updated. Restarting...","label":null,"level":"info"}
+{"message":"connected.","label":"vite","level":"info"}
+{"message":"connected.","label":"vite","level":"info"}
+{"message":"server restarted.","label":"vite","level":"info"}
+{"message":"[200] / 14ms","label":null,"level":"info"}
+{"message":"[200] / 3ms","label":null,"level":"info"}
+{"message":"/src/pages/index.astro?astro&type=style&index=0&lang.css","label":"watch","level":"info"}
+{"message":"[CompilerError] Expected `}` but found `:`\n  Stack trace:\n    at D:/dev/agents/mcp-hub/web/src/pages/index.astro:356:9\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
+{"message":"/src/pages/index.astro?astro&type=style&index=0&lang.css","label":"watch","level":"info"}
+{"message":"[CompilerError] Expected `}` but found `:`\n  Stack trace:\n    at D:/dev/agents/mcp-hub/web/src/pages/index.astro:356:9\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
+{"message":"[CompilerError] Expected `}` but found `:`\n  Stack trace:\n    at D:/dev/agents/mcp-hub/web/src/pages/index.astro:356:9\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
+{"message":"/src/pages/index.astro?astro&type=style&index=0&lang.css","label":"watch","level":"info"}
+{"message":"[CompilerError] Expected `}` but found `:`\n  Stack trace:\n    at handleCompileResultErrors (D:\\dev\\agents\\mcp-hub\\node_modules\\.pnpm\\astro@7.0.4_@emnapi+core@1._9b83482d3137bc24b0d80f865d41c860\\node_modules\\astro\\dist\\core\\compile\\compile.js:58:10)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
+{"message":"[CompilerError] Expected `}` but found `:`\n  Stack trace:\n    at D:/dev/agents/mcp-hub/web/src/pages/index.astro:14:9\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
+{"message":"/src/pages/index.astro?astro&type=style&index=0&lang.css","label":"watch","level":"info"}
+{"message":"[CompilerError] Expected `}` but found `:`\n  Stack trace:\n    at D:/dev/agents/mcp-hub/web/src/pages/index.astro:14:9\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
+{"message":"[CompilerError] Expected `}` but found `:`\n  Stack trace:\n    at handleCompileResultErrors (D:\\dev\\agents\\mcp-hub\\node_modules\\.pnpm\\astro@7.0.4_@emnapi+core@1._9b83482d3137bc24b0d80f865d41c860\\node_modules\\astro\\dist\\core\\compile\\compile.js:58:10)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
+{"message":"[CompilerError] Expected `}` but found `:`\n  Stack trace:\n    at D:/dev/agents/mcp-hub/web/src/pages/index.astro:14:9\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
+{"message":"src/components/content.astro","label":"watch","level":"info"}
+{"message":"[CompilerError] Expected `}` but found `:`\n  Stack trace:\n    at D:/dev/agents/mcp-hub/web/src/pages/index.astro:14:9\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
+{"message":"src/components/content.astro","label":"watch","level":"info"}
+{"message":"[CompilerError] Expected `}` but found `:`\n  Stack trace:\n    at handleCompileResultErrors (D:\\dev\\agents\\mcp-hub\\node_modules\\.pnpm\\astro@7.0.4_@emnapi+core@1._9b83482d3137bc24b0d80f865d41c860\\node_modules\\astro\\dist\\core\\compile\\compile.js:58:10)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
+{"message":"src/components/content.astro","label":"watch","level":"info"}
+{"message":"[CompilerError] Expected `}` but found `:`\n  Stack trace:\n    at D:/dev/agents/mcp-hub/web/src/pages/index.astro:14:9\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
+{"message":"[CompilerError] Expected `}` but found `:`\n  Stack trace:\n    at D:/dev/agents/mcp-hub/web/src/pages/index.astro:14:9\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
+{"message":"/src/pages/index.astro?astro&type=style&index=0&lang.css","label":"watch","level":"info"}
+{"message":"[200] / 12ms","label":null,"level":"info"}
+{"message":"[200] / 12ms","label":null,"level":"info"}
+{"message":"/src/pages/index.astro?astro&type=style&index=0&lang.css","label":"watch","level":"info"}
+{"message":"src/components/content.astro","label":"watch","level":"info"}
+{"message":"[200] / 10ms","label":null,"level":"info"}
+{"message":"[200] / 2ms","label":null,"level":"info"}
+{"message":"[200] / 2ms","label":null,"level":"info"}
+{"message":"[200] /en/ 5ms","label":null,"level":"info"}
+{"message":"[200] / 2ms","label":null,"level":"info"}
+{"message":"/src/layouts/BaseLayout.astro?astro&type=style&index=0&lang.css","label":"watch","level":"info"}
+{"message":"/src/layouts/BaseLayout.astro?astro&type=style&index=0&lang.css","label":"watch","level":"info"}
+{"message":"[200] / 7ms","label":null,"level":"info"}
+{"message":"/src/layouts/BaseLayout.astro?astro&type=style&index=0&lang.css","label":"watch","level":"info"}
+{"message":"[200] / 3ms","label":null,"level":"info"}
+{"message":"/src/layouts/BaseLayout.astro?astro&type=style&index=0&lang.css","label":"watch","level":"info"}
+{"message":"[200] / 6ms","label":null,"level":"info"}
+{"message":"[200] /en/ 5ms","label":null,"level":"info"}
+{"message":"[200] /en/ 6ms","label":null,"level":"info"}
+{"message":"[200] /en/ 6ms","label":null,"level":"info"}
+{"message":"[PARSE_ERROR] Expected a semicolon or an implicit semicolon after a statement, but found none\n    ╭─[ src/i18n/translations.ts:99:12 ]\n    │\n 99 │   link1Name: \"Model Context Protocol\",\n    │            │ \n    │            ╰─ \n    │ \n    │ Help: Try inserting a semicolon here\n────╯\n\n  Stack trace:\n    at transformWithOxc (file:///D:/dev/agents/mcp-hub/node_modules/.pnpm/vite@8.1.0_@types+node@24.13.2_esbuild@0.28.1_yaml@2.9.0/node_modules/vite/dist/node/chunks/node.js:3657:19)\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
+{"message":"[PARSE_ERROR] Expected a semicolon or an implicit semicolon after a statement, but found none\n    ╭─[ src/i18n/translations.ts:99:12 ]\n    │\n 99 │   link1Name: \"Model Context Protocol\",\n    │            │ \n    │            ╰─ \n    │ \n    │ Help: Try inserting a semicolon here\n────╯\n\n  Stack trace:\n    at D:/dev/agents/mcp-hub/web/src/i18n/translations.ts\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}
+{"message":"[200] /en/ 8ms","label":null,"level":"info"}
+{"message":"[200] /en/ 7ms","label":null,"level":"info"}
+{"message":"src/components/content.astro","label":"watch","level":"info"}
+{"message":"src/components/content.astro","label":"watch","level":"info"}
+{"message":"src/components/content.astro","label":"watch","level":"info"}
+{"message":"src/components/content.astro","label":"watch","level":"info"}
+{"message":"/src/layouts/BaseLayout.astro?astro&type=style&index=0&lang.css","label":"watch","level":"info"}
+{"message":"/src/layouts/BaseLayout.astro?astro&type=style&index=0&lang.css","label":"watch","level":"info"}
+{"message":"/src/layouts/BaseLayout.astro?astro&type=style&index=0&lang.css","label":"watch","level":"info"}
+{"message":"/src/layouts/BaseLayout.astro?astro&type=style&index=0&lang.css","label":"watch","level":"info"}
+{"message":"[200] / 6ms","label":null,"level":"info"}
+{"message":"[200] / 2ms","label":null,"level":"info"}
+{"message":"[200] / 5ms","label":null,"level":"info"}
+{"message":"[200] / 5ms","label":null,"level":"info"}
+{"message":"[200] / 1ms","label":null,"level":"info"}
+{"message":"[200] / 5ms","label":null,"level":"info"}
+{"message":"[200] / 6ms","label":null,"level":"info"}
+{"message":"[200] / 5ms","label":null,"level":"info"}
+{"message":"src/components/content.astro","label":"watch","level":"info"}
+{"message":"[200] / 5ms","label":null,"level":"info"}
+{"message":"src/components/content.astro","label":"watch","level":"info"}
+{"message":"[200] / 6ms","label":null,"level":"info"}
+{"message":"[200] / 2ms","label":null,"level":"info"}
+{"message":"[200] / 6ms","label":null,"level":"info"}
+{"message":"[200] / 6ms","label":null,"level":"info"}
+{"message":"[200] / 1ms","label":null,"level":"info"}
+{"message":"[200] /en/ 6ms","label":null,"level":"info"}
+{"message":"/src/layouts/BaseLayout.astro?astro&type=style&index=0&lang.css","label":"watch","level":"info"}
+{"message":"[200] / 10ms","label":null,"level":"info"}
+{"message":"[200] / 3ms","label":null,"level":"info"}
+{"message":"/src/layouts/BaseLayout.astro?astro&type=style&index=0&lang.css","label":"watch","level":"info"}
+{"message":"[200] / 8ms","label":null,"level":"info"}
+{"message":"[200] / 8ms","label":null,"level":"info"}
+{"message":"/src/layouts/BaseLayout.astro?astro&type=style&index=0&lang.css","label":"watch","level":"info"}
+{"message":"[200] / 6ms","label":null,"level":"info"}
+{"message":"/src/layouts/BaseLayout.astro?astro&type=style&index=0&lang.css","label":"watch","level":"info"}
+{"message":"[200] / 5ms","label":null,"level":"info"}
+{"message":"favicon-gen.html","label":"watch","level":"info"}
+{"message":"favicon-gen.html","label":"watch","level":"info"}
+{"message":"/src/layouts/BaseLayout.astro?astro&type=style&index=0&lang.css","label":"watch","level":"info"}
+{"message":"[200] / 8ms","label":null,"level":"info"}
+{"message":"favicon-gen.html","label":"watch","level":"info"}
+{"message":"/src/layouts/BaseLayout.astro?astro&type=style&index=0&lang.css","label":"watch","level":"info"}
+{"message":"/src/layouts/BaseLayout.astro?astro&type=style&index=0&lang.css","label":"watch","level":"info"}
+{"message":"[200] / 4ms","label":null,"level":"info"}
+{"message":"[200] / 9ms","label":null,"level":"info"}
+{"message":"/src/layouts/BaseLayout.astro?astro&type=style&index=0&lang.css","label":"watch","level":"info"}
+{"message":"[200] / 12ms","label":null,"level":"info"}
+{"message":"[200] / 2ms","label":null,"level":"info"}
+{"message":"[200] / 1ms","label":null,"level":"info"}
+{"message":"[200] / 7ms","label":null,"level":"info"}
+{"message":"[200] / 9ms","label":null,"level":"info"}
+{"message":"[200] / 6ms","label":null,"level":"info"}
+{"message":"[200] / 1ms","label":null,"level":"info"}
+{"message":"[200] / 9ms","label":null,"level":"info"}
+{"message":"[200] / 5ms","label":null,"level":"info"}
+{"message":"[200] / 7ms","label":null,"level":"info"}
+{"message":"/src/layouts/BaseLayout.astro?astro&type=style&index=0&lang.css","label":"watch","level":"info"}
+{"message":"/src/layouts/BaseLayout.astro?astro&type=style&index=0&lang.css","label":"watch","level":"info"}
+{"message":"[200] / 5ms","label":null,"level":"info"}
+{"message":"/src/layouts/BaseLayout.astro?astro&type=style&index=0&lang.css","label":"watch","level":"info"}
+{"message":"/src/layouts/BaseLayout.astro?astro&type=style&index=0&lang.css","label":"watch","level":"info"}
+{"message":"[200] / 5ms","label":null,"level":"info"}
+{"message":"[200] / 1ms","label":null,"level":"info"}
+{"message":"[200] / 9ms","label":null,"level":"info"}
+{"message":"[200] / 2ms","label":null,"level":"info"}
+{"message":"Configuration file updated. Restarting...","label":null,"level":"info"}
+{"message":"connected.","label":"vite","level":"info"}
+{"message":"connected.","label":"vite","level":"info"}
+{"message":"Re-optimizing dependencies because vite config has changed","label":"vite","level":"info"}
+{"message":"server restarted.","label":"vite","level":"info"}
+{"message":"[200] / 20ms","label":null,"level":"info"}
+{"message":"[200] / 2ms","label":null,"level":"info"}
+{"message":"Configuration file updated. Restarting...","label":null,"level":"info"}
+{"message":"connected.","label":"vite","level":"info"}
+{"message":"connected.","label":"vite","level":"info"}
+{"message":"server restarted.","label":"vite","level":"info"}
+{"message":"[200] / 12ms","label":null,"level":"info"}
+{"message":"[200] / 2ms","label":null,"level":"info"}
+{"message":"[200] / 5ms","label":null,"level":"info"}
+{"message":"[200] / 6ms","label":null,"level":"info"}
+{"message":"[200] / 5ms","label":null,"level":"info"}
+{"message":"[200] / 4ms","label":null,"level":"info"}

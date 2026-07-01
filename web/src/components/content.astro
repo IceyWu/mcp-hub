@@ -1,0 +1,89 @@
+---
+const { configText, copyText, githubUrl } = Astro.props;
+const text = copyText ?? configText;
+---
+
+<div class="code-wrap">
+  <div class="code-block">
+    <pre><code set:html={configText} /></pre>
+    <button class="copy-btn" aria-label="Copy to clipboard">
+      <svg
+        class="copy-icon"
+        width="16"
+        height="16"
+        viewBox="0 0 16 16"
+        fill="none"
+      >
+        <rect
+          x="5"
+          y="5"
+          width="9"
+          height="9"
+          rx="1.5"
+          stroke="currentColor"
+          stroke-width="1.5"></rect>
+        <path
+          d="M11 5V3.5C11 2.67157 10.3284 2 9.5 2H3.5C2.67157 2 2 2.67157 2 3.5V9.5C2 10.3284 2.67157 11 3.5 11H5"
+          stroke="currentColor"
+          stroke-width="1.5"></path>
+      </svg>
+      <svg
+        class="check-icon"
+        width="16"
+        height="16"
+        viewBox="0 0 16 16"
+        fill="none"
+        style="display:none"
+      >
+        <path
+          d="M3 8L6 11L13 4"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+      </svg>
+    </button>
+  </div>
+  <a href={githubUrl} class="gh-link" target="_blank" rel="noopener noreferrer">
+    View on GitHub
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+      <path
+        d="M5 11L9 7L5 3"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"></path>
+    </svg>
+  </a>
+</div>
+
+<script>
+  const configToCopy = `{ "mcpServers": { "tencent-docs": {
+    "url": "https://mcp.iceywu.cn/tencent-docs/",
+    "headers": {
+      "x-tencent-client-id": "<your-client-id>",
+      "x-tencent-access-token": "<your-access-token>",
+      "x-tencent-open-id": "<your-open-id>"
+    }
+  } } }`;
+
+  document.querySelectorAll(".copy-btn").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const copyIcon = btn.querySelector(".copy-icon");
+      const checkIcon = btn.querySelector(".check-icon");
+      try {
+        await navigator.clipboard.writeText(configToCopy);
+        if (copyIcon) (copyIcon as HTMLElement).style.display = "none";
+        if (checkIcon) (checkIcon as HTMLElement).style.display = "block";
+        btn.classList.add("copied");
+        setTimeout(() => {
+          if (copyIcon) (copyIcon as HTMLElement).style.display = "block";
+          if (checkIcon) (checkIcon as HTMLElement).style.display = "none";
+          btn.classList.remove("copied");
+        }, 2000);
+      } catch {
+        // fallback silently
+      }
+    });
+  });
+</script>

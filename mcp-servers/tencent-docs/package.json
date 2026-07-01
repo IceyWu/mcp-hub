@@ -1,0 +1,40 @@
+{
+  "name": "tencent-docs-mcp",
+  "version": "1.0.0",
+  "description": "腾讯文档 MCP 服务器 — 读写智能表、在线表格、附件图片，供编辑器 AI 调用",
+  "author": {
+    "name": "IceyWu",
+    "url": "https://github.com/IceyWu"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IceyWu/mcp-hub",
+    "directory": "mcp-servers/tencent-docs"
+  },
+  "type": "module",
+  "bin": {
+    "tencent-docs-mcp": "dist/mcp-servers/tencent-docs/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "prepublishOnly": "pnpm run build"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "tencent-docs",
+    "smartsheet",
+    "spreadsheet"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "4.4.3"
+  }
+}

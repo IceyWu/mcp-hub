@@ -1,0 +1,145 @@
+---
+import type { Translations } from "../i18n/translations";
+import CodeBlock from "./content.astro";
+
+interface Props {
+  t: Translations;
+  locale: string;
+}
+
+const { t, locale } = Astro.props;
+const otherLocale = locale === "zh-CN" ? "en" : "zh-CN";
+const otherPath = locale === "zh-CN" ? "/en/" : "/";
+
+const mcpConfigLines = [
+  "{",
+  '  "mcpServers": {',
+  '    "tencent-docs": {',
+  '      "url": "https://mcp.iceywu.cn/tencent-docs/",',
+  '      "headers": {',
+  '        "x-tencent-client-id": "&lt;your-id&gt;",',
+  '        "x-tencent-access-token": "&lt;your-token&gt;",',
+  '        "x-tencent-open-id": "&lt;your-open-id&gt;"',
+  "      }",
+  "    }",
+  "  }",
+  "}",
+];
+const mcpConfig = mcpConfigLines.join("\n");
+---
+
+<header class="header">
+  <a href="/" class="logo" aria-label="MCP Hub">
+    <svg
+      width="32"
+      height="32"
+      viewBox="0 0 80 80"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M14 64 L22 10 L40 24 L58 10 L66 64"
+        stroke="#1a1a1a"
+        stroke-width="3.2"
+        stroke-linecap="round"
+        stroke-linejoin="round"></path>
+      <path
+        d="M13 63 L21 9 L39 23 L57 9 L65 63"
+        stroke="#1a1a1a"
+        stroke-width="3.2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        transform="translate(1,-1)"></path>
+      <line
+        x1="30"
+        y1="30"
+        x2="30"
+        y2="58"
+        stroke="#1a1a1a"
+        stroke-width="3.2"
+        stroke-linecap="round"></line>
+      <line
+        x1="31"
+        y1="30"
+        x2="31"
+        y2="58"
+        stroke="#1a1a1a"
+        stroke-width="3.2"
+        stroke-linecap="round"
+        transform="translate(1,0)"></line>
+      <line
+        x1="50"
+        y1="30"
+        x2="50"
+        y2="58"
+        stroke="#1a1a1a"
+        stroke-width="3.2"
+        stroke-linecap="round"></line>
+      <line
+        x1="49"
+        y1="30"
+        x2="49"
+        y2="58"
+        stroke="#1a1a1a"
+        stroke-width="3.2"
+        stroke-linecap="round"
+        transform="translate(-1,0)"></line>
+      <path
+        d="M28 46 L52 46"
+        stroke="#1a1a1a"
+        stroke-width="3.2"
+        stroke-linecap="round"></path>
+    </svg>
+  </a>
+  <span class="role">{t.role}</span>
+  <a href={otherPath} class="lang-switch" aria-label="Switch language">
+    {otherLocale === "zh-CN" ? "中文" : "EN"}
+  </a>
+</header>
+
+<main class="main">
+  <h1 class="title">{t.title}</h1>
+  <p class="desc">{t.desc}</p>
+  <p class="usage">{t.usage}</p>
+
+  <CodeBlock
+    configText={mcpConfig}
+    githubUrl="https://github.com/IceyWu/mcp-hub"
+  />
+
+  <section class="section">
+    <h2 class="section-title">{t.services}</h2>
+    <div class="cards">
+      <a href="https://github.com/IceyWu/mcp-hub" class="card">
+        <span class="card-title">{t.service1Name}</span>
+        <span class="card-desc">{t.service1Desc}</span>
+        <span class="card-detail">{t.service1Detail}</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">{t.howTitle}</h2>
+    <p class="how-desc">{t.howDesc}</p>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">{t.moreTitle}</h2>
+    <p class="iceberg-desc">{t.moreDesc}</p>
+    <a href="https://github.com/IceyWu/mcp-hub" class="cta">
+      {t.viewOnGitHub}
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path
+          d="M6 12L10 8L6 4"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+      </svg>
+    </a>
+  </section>
+</main>
+
+<footer class="footer">
+  <span>{t.footerText}</span>
+</footer>
