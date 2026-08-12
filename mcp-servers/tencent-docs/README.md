@@ -25,6 +25,7 @@
 {
   "mcpServers": {
     "tencent-docs": {
+      "type": "http",
       "url": "https://mcp.iceywu.cn/tencent-docs/",
       "headers": {
         "x-tencent-client-id": "你的_client_id",

@@ -28,8 +28,8 @@ export interface Translations {
 
 const zh: Translations = {
   role: "AI Agent 的 MCP 服务中心",
-  title: "为你的 AI Agent\n部署 MCP 服务",
-  desc: "一个域名，托管多个 MCP 服务器。通过 HTTP + Header 鉴权连接，让你的编码智能体直接调用各种工具。",
+  title: "为你的 AI Agent\n接入 MCP 工具",
+  desc: "一个域名，连接多个 MCP 服务。复制配置，即可让 AI Agent 调用腾讯文档与 WordsEssence 工具。",
   usage:
     "已有服务：Tencent Docs MCP 与 WordsEssence MCP，覆盖腾讯文档读写和书摘管理。",
   services: "已接入服务",
@@ -59,8 +59,8 @@ const zh: Translations = {
 
 const en: Translations = {
   role: "MCP Service Hub for AI Agents",
-  title: "Deploy MCP Services\nfor Your AI Agent",
-  desc: "One domain, multiple MCP servers. Connect via HTTP with header-based auth — let your coding agent call any tool you deploy.",
+  title: "Connect MCP Tools\nto Your AI Agent",
+  desc: "One domain for multiple MCP services. Copy the config to connect your AI agent to Tencent Docs and WordsEssence tools.",
   usage:
     "Live: Tencent Docs MCP and WordsEssence MCP, covering document automation and excerpt management.",
   services: "Available Services",

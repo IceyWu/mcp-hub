@@ -36,6 +36,23 @@
 }
 ```
 
+## 连接已部署服务
+
+在支持 Streamable HTTP 的 MCP 客户端中添加：
+
+```json
+{
+  "mcpServers": {
+    "wordsessence": {
+      "type": "http",
+      "url": "https://mcp.iceywu.cn/wordsessence/"
+    }
+  }
+}
+```
+
+`type` 用于明确指定远程 HTTP 传输；不同客户端的配置文件位置可能不同，但服务地址保持不变。
+
 构建：
 
 ```bash

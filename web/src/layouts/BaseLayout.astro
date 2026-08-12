@@ -321,6 +321,7 @@ const {
   .endpoint-label { font-size: 11px; color: #aaa; display: block; margin-bottom: 3px; }
   .endpoint code { font-family: "JetBrains Mono", "SF Mono", monospace; font-size: 12px; color: #333; word-break: break-all; }
   .detail-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 28px; margin-bottom: 48px; }
+  .detail-grid > *, .endpoint > span { min-width: 0; }
   .detail-section { margin-bottom: 38px; }
   .detail-section h2 { font-size: 18px; margin-bottom: 14px; }
   .detail-section p { font-size: 14px; color: #707070; line-height: 1.65; }
@@ -401,10 +402,11 @@ const {
       align-items: stretch;
     }
 
-    .cards, .detail-grid { grid-template-columns: 1fr; }
+    .cards, .detail-grid { grid-template-columns: minmax(0, 1fr); }
     .card { min-height: 150px; }
     .detail-title { font-size: 28px; }
     .endpoint { align-items: flex-start; flex-direction: column; }
+    .endpoint code { overflow-wrap: anywhere; }
 
     .gh-link {
       justify-content: center;

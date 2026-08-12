@@ -13,6 +13,8 @@ export interface ServiceDetail {
   steps: string[];
   projectUrl: string;
   projectLabel: string;
+  sourceUrl?: string;
+  sourceLabel?: string;
 }
 
 const zh: Record<ServiceSlug, ServiceDetail> = {
@@ -26,6 +28,7 @@ const zh: Record<ServiceSlug, ServiceDetail> = {
     config: `{
   "mcpServers": {
     "tencent-docs": {
+      "type": "http",
       "url": "https://mcp.iceywu.cn/tencent-docs/",
       "headers": {
         "x-tencent-client-id": "<your-id>",
@@ -58,6 +61,7 @@ const zh: Record<ServiceSlug, ServiceDetail> = {
     config: `{
   "mcpServers": {
     "wordsessence": {
+      "type": "http",
       "url": "https://mcp.iceywu.cn/wordsessence/"
     }
   }
@@ -69,10 +73,12 @@ const zh: Record<ServiceSlug, ServiceDetail> = {
       { name: "update_excerpt", description: "按 ID 更新指定书摘字段" },
       { name: "delete_excerpt", description: "按 ID 软删除书摘" },
     ],
-    note: "这是具备写入能力的 MCP。公开部署前建议为 MCP 和上游 API 增加鉴权，并在客户端对写操作启用人工确认。",
-    steps: ["复制下方 MCP 配置", "在支持 Streamable HTTP 的客户端中连接", "先用 list_excerpts 验证读取，再按需执行写操作"],
-    projectUrl: "https://github.com/IceyWu/WordsEssence",
-    projectLabel: "查看 WordsEssence 项目",
+    note: "这是公开且具备写入能力的 MCP。请只在可信客户端中使用，并对写操作启用人工确认；后续建议为 MCP 和上游 API 增加鉴权。",
+    steps: ["复制连接配置", "在支持 Streamable HTTP 的客户端中连接", "先用 list_excerpts 验证读取，再按需执行写操作"],
+    projectUrl: "https://wd.iceywu.cn/",
+    projectLabel: "访问 WordsEssence 官网",
+    sourceUrl: "https://github.com/IceyWu/WordsEssence",
+    sourceLabel: "查看源代码",
   },
 };
 
@@ -106,9 +112,10 @@ const en: Record<ServiceSlug, ServiceDetail> = {
       { name: "update_excerpt", description: "Update selected fields by ID" },
       { name: "delete_excerpt", description: "Soft-delete an excerpt by ID" },
     ],
-    note: "This MCP can write data. Before public deployment, protect both the MCP and upstream API with authentication and require confirmation for writes.",
-    steps: ["Copy the MCP configuration below", "Connect from a Streamable HTTP client", "Verify reads with list_excerpts before using write tools"],
-    projectLabel: "View the WordsEssence project",
+    note: "This public MCP can write data. Use it only from trusted clients, require confirmation for writes, and add authentication to both the MCP and upstream API.",
+    steps: ["Copy the connection config", "Connect from a Streamable HTTP client", "Verify reads with list_excerpts before using write tools"],
+    projectLabel: "Visit WordsEssence",
+    sourceLabel: "View source",
   },
 };
 

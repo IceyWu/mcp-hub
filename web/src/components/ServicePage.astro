@@ -55,6 +55,7 @@ const displayConfig = service.config.replaceAll("<", "&lt;").replaceAll(">", "&g
         <div class="note" style="margin-top: 14px">{service.note}</div>
         <div class="detail-actions">
           <a class="cta" href={service.projectUrl} target="_blank" rel="noopener noreferrer">{labels.project} →</a>
+          {service.sourceUrl && <a class="cta" href={service.sourceUrl} target="_blank" rel="noopener noreferrer">{service.sourceLabel} →</a>}
           <a class="cta" href={otherPath}>{labels.switch}</a>
         </div>
       </section>
