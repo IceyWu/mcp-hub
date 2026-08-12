@@ -1,0 +1,15 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import ServicePage from "../../../components/ServicePage.astro";
+import { serviceCatalog, type ServiceSlug } from "../../../i18n/serviceCatalog";
+import { t } from "../../../i18n/translations";
+
+export function getStaticPaths() {
+  return (["tencent-docs", "wordsessence"] as ServiceSlug[]).map((slug) => ({ params: { slug }, props: { slug } }));
+}
+const { slug } = Astro.props as { slug: ServiceSlug };
+const service = serviceCatalog.en[slug];
+---
+<BaseLayout title={`${service.name} — MCP Hub`} description={service.lead}>
+  <ServicePage service={service} t={t("en")} locale="en" />
+</BaseLayout>

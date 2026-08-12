@@ -1,0 +1,33 @@
+{
+  "name": "wordsessence-mcp",
+  "version": "0.1.0",
+  "description": "MCP server for managing excerpts in WordsEssence",
+  "type": "module",
+  "bin": {
+    "wordsessence-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "pnpm run build && node --env-file=../../.env.local dist/index.js --http",
+    "prepublishOnly": "pnpm run build"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "rest-api",
+    "wordsessence",
+    "excerpts"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "zod": "4.4.3"
+  }
+}

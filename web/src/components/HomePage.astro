@@ -1,6 +1,8 @@
 ---
 import type { Translations } from "../i18n/translations";
 import CodeBlock from "./content.astro";
+import SiteHeader from "./SiteHeader.astro";
+import SiteFooter from "./SiteFooter.astro";
 
 interface Props {
   t: Translations;
@@ -8,8 +10,7 @@ interface Props {
 }
 
 const { t, locale } = Astro.props;
-const otherLocale = locale === "zh-CN" ? "en" : "zh-CN";
-const otherPath = locale === "zh-CN" ? "/en/" : "/";
+const serviceBase = locale === "zh-CN" ? "/services" : "/en/services";
 
 const mcpConfigLines = [
   "{",
@@ -21,81 +22,32 @@ const mcpConfigLines = [
   '        "x-tencent-access-token": "&lt;your-token&gt;",',
   '        "x-tencent-open-id": "&lt;your-open-id&gt;"',
   "      }",
+  "    },",
+  '    "wordsessence": {',
+  '      "url": "https://mcp.iceywu.cn/wordsessence/"',
   "    }",
   "  }",
   "}",
 ];
 const mcpConfig = mcpConfigLines.join("\n");
+const mcpConfigCopy = `{
+  "mcpServers": {
+    "tencent-docs": {
+      "url": "https://mcp.iceywu.cn/tencent-docs/",
+      "headers": {
+        "x-tencent-client-id": "<your-id>",
+        "x-tencent-access-token": "<your-token>",
+        "x-tencent-open-id": "<your-open-id>"
+      }
+    },
+    "wordsessence": {
+      "url": "https://mcp.iceywu.cn/wordsessence/"
+    }
+  }
+}`;
 ---
 
-<header class="header">
-  <a href="/" class="logo" aria-label="MCP Hub">
-    <svg
-      width="32"
-      height="32"
-      viewBox="0 0 80 80"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M14 64 L22 10 L40 24 L58 10 L66 64"
-        stroke="#1a1a1a"
-        stroke-width="3.2"
-        stroke-linecap="round"
-        stroke-linejoin="round"></path>
-      <path
-        d="M13 63 L21 9 L39 23 L57 9 L65 63"
-        stroke="#1a1a1a"
-        stroke-width="3.2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        transform="translate(1,-1)"></path>
-      <line
-        x1="30"
-        y1="30"
-        x2="30"
-        y2="58"
-        stroke="#1a1a1a"
-        stroke-width="3.2"
-        stroke-linecap="round"></line>
-      <line
-        x1="31"
-        y1="30"
-        x2="31"
-        y2="58"
-        stroke="#1a1a1a"
-        stroke-width="3.2"
-        stroke-linecap="round"
-        transform="translate(1,0)"></line>
-      <line
-        x1="50"
-        y1="30"
-        x2="50"
-        y2="58"
-        stroke="#1a1a1a"
-        stroke-width="3.2"
-        stroke-linecap="round"></line>
-      <line
-        x1="49"
-        y1="30"
-        x2="49"
-        y2="58"
-        stroke="#1a1a1a"
-        stroke-width="3.2"
-        stroke-linecap="round"
-        transform="translate(-1,0)"></line>
-      <path
-        d="M28 46 L52 46"
-        stroke="#1a1a1a"
-        stroke-width="3.2"
-        stroke-linecap="round"></path>
-    </svg>
-  </a>
-  <span class="role">{t.role}</span>
-  <a href={otherPath} class="lang-switch" aria-label="Switch language">
-    {otherLocale === "zh-CN" ? "中文" : "EN"}
-  </a>
-</header>
+<SiteHeader locale={locale} role={t.role} />
 
 <main class="main">
   <h1 class="title">{t.title}</h1>
@@ -104,16 +56,23 @@ const mcpConfig = mcpConfigLines.join("\n");
 
   <CodeBlock
     configText={mcpConfig}
-    githubUrl="https://github.com/IceyWu/mcp-hub"
+    copyText={mcpConfigCopy}
   />
 
   <section class="section">
     <h2 class="section-title">{t.services}</h2>
     <div class="cards">
-      <a href="https://github.com/IceyWu/mcp-hub" class="card">
-        <span class="card-title">{t.service1Name}</span>
+      <a href={`${serviceBase}/tencent-docs/`} class="card">
+        <span class="card-top"><span class="card-title">{t.service1Name}</span><span class="card-arrow">→</span></span>
         <span class="card-desc">{t.service1Desc}</span>
         <span class="card-detail">{t.service1Detail}</span>
+        <span class="service-meta"><span class="pill">Streamable HTTP</span><span class="pill">6 tools</span><span class="pill">Header Auth</span></span>
+      </a>
+      <a href={`${serviceBase}/wordsessence/`} class="card">
+        <span class="card-top"><span class="card-title">{t.service2Name}</span><span class="card-arrow">→</span></span>
+        <span class="card-desc">{t.service2Desc}</span>
+        <span class="card-detail">{t.service2Detail}</span>
+        <span class="service-meta"><span class="pill">Streamable HTTP</span><span class="pill">5 tools</span><span class="pill">Write capable</span></span>
       </a>
     </div>
   </section>
@@ -140,6 +99,4 @@ const mcpConfig = mcpConfigLines.join("\n");
   </section>
 </main>
 
-<footer class="footer">
-  <span>{t.footerText}</span>
-</footer>
+<SiteFooter text={t.footerText} />

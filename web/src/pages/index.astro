@@ -1,5 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import HomePage from "../components/HomePage.astro";
+import { t } from "../i18n/translations";
 ---
 
-<BaseLayout />
+<BaseLayout title="MCP Hub — AI Agent 的 MCP 服务中心" description="一个域名托管多个专注的 MCP 服务。">
+  <HomePage t={t("zh-CN")} locale="zh-CN" />
+</BaseLayout>

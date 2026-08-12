@@ -1,0 +1,18 @@
+---
+interface Props { locale: string; role: string; languagePath?: string; }
+const { locale, role, languagePath } = Astro.props;
+const otherPath = languagePath ?? (locale === "zh-CN" ? "/en/" : "/");
+const homePath = locale === "zh-CN" ? "/" : "/en/";
+---
+<header class="header">
+  <a href={homePath} class="logo" aria-label="MCP Hub">
+    <svg width="32" height="32" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M14 64 L22 10 L40 24 L58 10 L66 64" stroke="#1a1a1a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"></path>
+      <line x1="30" y1="30" x2="30" y2="58" stroke="#1a1a1a" stroke-width="3.2" stroke-linecap="round"></line>
+      <line x1="50" y1="30" x2="50" y2="58" stroke="#1a1a1a" stroke-width="3.2" stroke-linecap="round"></line>
+      <path d="M28 46 L52 46" stroke="#1a1a1a" stroke-width="3.2" stroke-linecap="round"></path>
+    </svg>
+  </a>
+  <a href={homePath} class="role">{role}</a>
+  <a href={otherPath} class="lang-switch" aria-label="Switch language">{locale === "zh-CN" ? "EN" : "中文"}</a>
+</header>

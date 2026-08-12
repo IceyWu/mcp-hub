@@ -9,6 +9,9 @@ export interface Translations {
   service1Name: string;
   service1Desc: string;
   service1Detail: string;
+  service2Name: string;
+  service2Desc: string;
+  service2Detail: string;
   howTitle: string;
   howDesc: string;
   moreTitle: string;
@@ -28,15 +31,19 @@ const zh: Translations = {
   title: "为你的 AI Agent\n部署 MCP 服务",
   desc: "一个域名，托管多个 MCP 服务器。通过 HTTP + Header 鉴权连接，让你的编码智能体直接调用各种工具。",
   usage:
-    "已有服务：Tencent Docs MCP — 读写智能表、在线表格、附件图片。更多服务持续接入中。",
+    "已有服务：Tencent Docs MCP 与 WordsEssence MCP，覆盖腾讯文档读写和书摘管理。",
   services: "已接入服务",
   service1Name: "Tencent Docs MCP",
   service1Desc: "读写腾讯文档的 MCP 服务",
   service1Detail:
     "支持列出文档、读写记录、读取附件图片、新建 Bug 表等 6 个工具",
+  service2Name: "WordsEssence MCP",
+  service2Desc: "记录与管理美好文字片段",
+  service2Detail:
+    "支持查询、新增、更新和软删除书摘，共 5 个工具；写入前请确认目标内容",
   howTitle: "连接方式",
   howDesc:
-    "所有服务通过统一域名访问，路径区分不同 MCP。凭证通过 HTTP Header 传入，无需本地安装。",
+    "所有服务通过统一域名访问，并按路径区分。Tencent Docs 使用 Header 凭证；WordsEssence 当前可直接连接，无需本地安装。",
   moreTitle: "接入你的 MCP",
   moreDesc:
     "有好的 MCP 服务想部署？MCP Hub 支持 Dockerfile 一键部署，提交 PR 即可接入。让你的工具被更多 AI Agent 使用。",
@@ -55,15 +62,19 @@ const en: Translations = {
   title: "Deploy MCP Services\nfor Your AI Agent",
   desc: "One domain, multiple MCP servers. Connect via HTTP with header-based auth — let your coding agent call any tool you deploy.",
   usage:
-    "Live: Tencent Docs MCP — read/write smart sheets, spreadsheets, and attachments. More services coming.",
+    "Live: Tencent Docs MCP and WordsEssence MCP, covering document automation and excerpt management.",
   services: "Available Services",
   service1Name: "Tencent Docs MCP",
   service1Desc: "MCP service for Tencent Docs",
   service1Detail:
     "6 tools: list documents, read/write records, read attachments, create bug sheets",
+  service2Name: "WordsEssence MCP",
+  service2Desc: "Capture and manage memorable excerpts",
+  service2Detail:
+    "5 tools to list, create, update, and soft-delete excerpts; confirm content before write operations",
   howTitle: "How to Connect",
   howDesc:
-    "All services share one domain, routed by path. Credentials via HTTP headers — no local install required.",
+    "All services share one domain and are routed by path. Tencent Docs uses header credentials; WordsEssence currently connects directly. No local install required.",
   moreTitle: "Add Your MCP",
   moreDesc:
     "Have an MCP service to deploy? MCP Hub supports one-click Dockerfile deployment. Submit a PR to get your tool in front of more AI agents.",

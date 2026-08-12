@@ -1,9 +1,9 @@
 ---
-import { t } from "../i18n/translations";
-import HomePage from "../components/HomePage.astro";
-
 const locale = (Astro.currentLocale ?? "zh-CN") as "zh-CN" | "en";
-const dict = t(locale);
+const {
+  title = "MCP Hub",
+  description = "One domain for focused MCP services.",
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -14,11 +14,12 @@ const dict = t(locale);
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>MCP Hub</title>
+    <meta name="description" content={description} />
+    <title>{title}</title>
   </head>
   <body>
     <div class="container">
-      <HomePage t={dict} locale={locale} />
+      <slot />
     </div>
   </body>
 </html>
@@ -59,7 +60,7 @@ const dict = t(locale);
   }
 
   .container {
-    max-width: 680px;
+    max-width: 760px;
     margin: 0 auto;
     padding: 0 24px;
   }
@@ -246,50 +247,90 @@ const dict = t(locale);
   }
 
   .cards {
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
-    border: 1px solid #e8e8e8;
-    border-radius: 10px;
-    overflow: hidden;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
   }
 
   .card {
     display: flex;
     flex-direction: column;
-    gap: 3px;
-    padding: 14px 18px;
+    gap: 8px;
+    min-height: 176px;
+    padding: 18px;
     background: #fff;
-    transition: background 0.15s;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
   }
 
   .card:hover {
-    background: #f8f8f8;
-  }
-
-  .card + .card {
-    border-top: 1px solid #eee;
+    border-color: #c9c9c9;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.045);
   }
 
   .card-title {
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 16px;
+    font-weight: 600;
     color: #1a1a1a;
     letter-spacing: -0.01em;
   }
 
   .card-desc {
-    font-size: 12px;
-    color: #999;
+    font-size: 13px;
+    color: #666;
     line-height: 1.45;
   }
 
   .card-detail {
-    font-size: 11px;
-    color: #bbb;
+    font-size: 12px;
+    color: #999;
     line-height: 1.4;
     margin-top: 2px;
   }
+
+  .card-top, .service-meta, .detail-actions {
+    display: flex;
+    align-items: center;
+  }
+
+  .card-top { justify-content: space-between; gap: 12px; }
+  .service-meta { gap: 6px; flex-wrap: wrap; margin-top: auto; }
+  .pill {
+    font-size: 10px;
+    color: #777;
+    background: #f4f4f4;
+    border: 1px solid #e8e8e8;
+    border-radius: 999px;
+    padding: 3px 7px;
+  }
+  .card-arrow { color: #aaa; font-size: 18px; transition: transform 0.15s; }
+  .card:hover .card-arrow { transform: translateX(3px); color: #555; }
+
+  .breadcrumb { font-size: 12px; color: #999; margin-bottom: 22px; }
+  .breadcrumb a:hover { color: #333; }
+  .detail-hero { margin-bottom: 36px; }
+  .detail-kicker { font-size: 12px; color: #999; margin-bottom: 10px; }
+  .detail-title { font-size: 34px; line-height: 1.15; letter-spacing: -0.035em; margin-bottom: 14px; }
+  .detail-lead { color: #666; max-width: 600px; line-height: 1.65; }
+  .endpoint {
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    margin-top: 22px; padding: 13px 15px; background: #fff; border: 1px solid #e5e5e5; border-radius: 10px;
+  }
+  .endpoint-label { font-size: 11px; color: #aaa; display: block; margin-bottom: 3px; }
+  .endpoint code { font-family: "JetBrains Mono", "SF Mono", monospace; font-size: 12px; color: #333; word-break: break-all; }
+  .detail-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 28px; margin-bottom: 48px; }
+  .detail-section { margin-bottom: 38px; }
+  .detail-section h2 { font-size: 18px; margin-bottom: 14px; }
+  .detail-section p { font-size: 14px; color: #707070; line-height: 1.65; }
+  .tool-list { display: flex; flex-direction: column; gap: 8px; }
+  .tool-item { padding: 12px 14px; background: #fff; border: 1px solid #e8e8e8; border-radius: 9px; }
+  .tool-item code { font-family: "JetBrains Mono", "SF Mono", monospace; font-size: 12px; font-weight: 600; }
+  .tool-item span { display: block; font-size: 12px; color: #999; margin-top: 3px; }
+  .note { padding: 14px 16px; border-left: 3px solid #bbb; background: #f4f4f4; border-radius: 0 8px 8px 0; font-size: 13px; color: #666; line-height: 1.6; }
+  .steps { padding-left: 20px; color: #666; font-size: 14px; line-height: 1.8; }
+  .detail-actions { gap: 10px; flex-wrap: wrap; margin-top: 18px; }
 
   .how-desc {
     font-size: 14px;
@@ -359,6 +400,11 @@ const dict = t(locale);
       flex-direction: column;
       align-items: stretch;
     }
+
+    .cards, .detail-grid { grid-template-columns: 1fr; }
+    .card { min-height: 150px; }
+    .detail-title { font-size: 28px; }
+    .endpoint { align-items: flex-start; flex-direction: column; }
 
     .gh-link {
       justify-content: center;

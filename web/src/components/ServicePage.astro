@@ -1,0 +1,64 @@
+---
+import type { ServiceDetail } from "../i18n/serviceCatalog";
+import type { Translations } from "../i18n/translations";
+import CodeBlock from "./content.astro";
+import SiteHeader from "./SiteHeader.astro";
+import SiteFooter from "./SiteFooter.astro";
+
+interface Props { service: ServiceDetail; t: Translations; locale: string; }
+const { service, t, locale } = Astro.props;
+const homePath = locale === "zh-CN" ? "/" : "/en/";
+const otherPath = locale === "zh-CN" ? `/en/services/${service.slug}/` : `/services/${service.slug}/`;
+const labels = locale === "zh-CN" ? {
+  back: "返回服务目录", endpoint: "服务地址", overview: "连接配置", tools: "可用工具",
+  start: "开始使用", auth: "权限与安全", project: service.projectLabel, switch: "English",
+} : {
+  back: "Back to services", endpoint: "Endpoint", overview: "Connection config", tools: "Available tools",
+  start: "Get started", auth: "Access and safety", project: service.projectLabel, switch: "中文",
+};
+const displayConfig = service.config.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+---
+<SiteHeader locale={locale} role={t.role} languagePath={otherPath} />
+<main class="main">
+  <nav class="breadcrumb"><a href={homePath}>← {labels.back}</a></nav>
+  <section class="detail-hero">
+    <p class="detail-kicker">{service.kicker}</p>
+    <h1 class="detail-title">{service.name}</h1>
+    <p class="detail-lead">{service.lead}</p>
+    <div class="endpoint">
+      <span><span class="endpoint-label">{labels.endpoint}</span><code>{service.endpoint}</code></span>
+      <span class="pill">Streamable HTTP</span>
+    </div>
+  </section>
+
+  <div class="detail-grid">
+    <div>
+      <section class="detail-section">
+        <h2>{labels.overview}</h2>
+        <CodeBlock configText={displayConfig} copyText={service.config} />
+      </section>
+      <section class="detail-section">
+        <h2>{labels.tools}</h2>
+        <div class="tool-list">
+          {service.tools.map((tool) => <div class="tool-item"><code>{tool.name}</code><span>{tool.description}</span></div>)}
+        </div>
+      </section>
+    </div>
+    <aside>
+      <section class="detail-section">
+        <h2>{labels.start}</h2>
+        <ol class="steps">{service.steps.map((step) => <li>{step}</li>)}</ol>
+      </section>
+      <section class="detail-section">
+        <h2>{labels.auth}</h2>
+        <p>{service.auth}</p>
+        <div class="note" style="margin-top: 14px">{service.note}</div>
+        <div class="detail-actions">
+          <a class="cta" href={service.projectUrl} target="_blank" rel="noopener noreferrer">{labels.project} →</a>
+          <a class="cta" href={otherPath}>{labels.switch}</a>
+        </div>
+      </section>
+    </aside>
+  </div>
+</main>
+<SiteFooter text={t.footerText} />

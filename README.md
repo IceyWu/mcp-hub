@@ -6,7 +6,7 @@
 
 一个域名托管多个 [MCP](https://modelcontextprotocol.io) 服务，让 AI Agent 通过 HTTP + Header 鉴权直接调用。无需本地安装，已部署服务即连即用。
 
-目前已接入 **Tencent Docs MCP**（腾讯文档智能表/在线表格读写），更多服务持续接入中。
+目前已接入 **Tencent Docs MCP**（腾讯文档智能表/在线表格读写）和 **WordsEssence MCP**（书摘管理）。
 
 🌐 [mcp.iceywu.cn](https://mcp.iceywu.cn)
 
@@ -14,11 +14,12 @@
 
 ## 项目结构
 
-仓库含三部分，共享同一套腾讯文档 API 客户端（`agent/lib/tencent-docs/`）：
+仓库包含多个独立 MCP package、一个 eve agent 和静态站点。Tencent Docs MCP 与 agent 共享 `agent/lib/tencent-docs/` 客户端，其他 MCP 保持独立：
 
 | 部分 | 形态 | 用途 |
 | --- | --- | --- |
-| **MCP server** | MCP 服务器（HTTP + stdio） | 编码 AI 直接读写腾讯文档 → [详情](./mcp-servers/tencent-docs/README.md) |
+| **Tencent Docs MCP** | MCP 服务器（HTTP + stdio） | 编码 AI 直接读写腾讯文档 → [详情](./mcp-servers/tencent-docs/README.md) |
+| **WordsEssence MCP** | MCP 服务器（HTTP + stdio） | 管理 WordsEssence 书摘 → [详情](./mcp-servers/wordsessence/README.md) |
 | **eve agent** | 对话式 agent（[eve](https://eve.dev) + DeepSeek） | 聊天界面浏览、统计表格 |
 | **web** | [Astro](https://astro.build) 静态站点（中英双语） | 项目主页 |
 
@@ -29,7 +30,9 @@ agent/              # eve agent 入口、工具、技能
 ├── tools/          # 读写表格、文档管理
 ├── skills/
 └── lib/tencent-docs/  # 腾讯文档 API 客户端（共享核心）
-mcp-servers/tencent-docs/  # MCP 服务器（独立包 tencent-docs-mcp）
+mcp-servers/
+├── tencent-docs/          # 腾讯文档 MCP（共享 agent/lib）
+└── wordsessence/          # WordsEssence MCP（独立 REST API 客户端）
 web/                         # 项目主页
 deploy/                      # nginx + supervisord 配置
 Dockerfile                   # 单容器构建（MCP server + web）
@@ -40,8 +43,9 @@ Dockerfile                   # 单容器构建（MCP server + web）
 ```bash
 pnpm install
 pnpm dev           # 本地 eve agent
+pnpm dev:wordsessence # 本地 WordsEssence MCP（默认端口 3002）
 pnpm dev:web       # 本地主页 http://localhost:4321
-pnpm build:mcp     # 编译 MCP server
+pnpm build:mcp     # 编译全部 MCP server
 pnpm build:web     # 构建 web 站点
 pnpm typecheck
 ```
