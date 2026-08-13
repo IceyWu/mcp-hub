@@ -1,4 +1,4 @@
-const DEFAULT_BASE_URL = "https://wd.iceywu.cn/service";
+const DEFAULT_BASE_URL = "https://wd.levwu.me/service";
 
 export type ApiEnvelope<T> = {
   code?: number;
@@ -24,7 +24,11 @@ function headers(hasBody: boolean): HeadersInit {
 
 export async function apiRequest<T>(
   path: string,
-  options: { method?: string; body?: unknown; query?: Record<string, unknown> } = {},
+  options: {
+    method?: string;
+    body?: unknown;
+    query?: Record<string, unknown>;
+  } = {},
 ): Promise<T | undefined> {
   const url = new URL(`${baseUrl()}${path}`);
   for (const [key, value] of Object.entries(options.query ?? {})) {
@@ -46,18 +50,24 @@ export async function apiRequest<T>(
   try {
     payload = text ? (JSON.parse(text) as ApiEnvelope<T> | T) : undefined;
   } catch {
-    throw new Error(`API returned invalid JSON (${response.status}): ${text.slice(0, 500)}`);
+    throw new Error(
+      `API returned invalid JSON (${response.status}): ${text.slice(0, 500)}`,
+    );
   }
 
   if (!response.ok) {
     const message = (payload as ApiEnvelope<T> | undefined)?.message;
-    throw new Error(`API request failed (${response.status}): ${message ?? text ?? response.statusText}`);
+    throw new Error(
+      `API request failed (${response.status}): ${message ?? text ?? response.statusText}`,
+    );
   }
 
   if (payload && typeof payload === "object" && "data" in payload) {
     const envelope = payload as ApiEnvelope<T>;
     if (typeof envelope.code === "number" && envelope.code >= 400) {
-      throw new Error(`API request failed (${envelope.code}): ${envelope.message ?? "Unknown error"}`);
+      throw new Error(
+        `API request failed (${envelope.code}): ${envelope.message ?? "Unknown error"}`,
+      );
     }
     return envelope.data;
   }

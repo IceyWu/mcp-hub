@@ -12,7 +12,7 @@
  *   - http：Streamable HTTP 服务，凭证从请求头读取（用于远程部署）
  *     启动方式：node index.js --http  或  MCP_TRANSPORT=http node index.js
  *     端口：PORT 环境变量，默认 3001
- *     Host 白名单：默认放行 127.0.0.1 / localhost / mcp.iceywu.cn；
+ *     Host 白名单：默认放行 127.0.0.1 / localhost / mcp.levwu.me；
  *       其它自定义域名用 MCP_ALLOWED_HOSTS 环境变量（逗号分隔）追加
  *
  * 凭证来源（优先级从高到低）：
@@ -447,11 +447,11 @@ function extractCredentialsFromHeaders(req: any): {
 
 /**
  * 组装 Streamable HTTP 允许的 Host 白名单。
- * 默认放行 127.0.0.1 / localhost 及内置部署域名 mcp.iceywu.cn；
+ * 默认放行 127.0.0.1 / localhost 及内置部署域名 mcp.levwu.me；
  * 额外域名通过环境变量 MCP_ALLOWED_HOSTS 配置（逗号分隔），便于反代/自定义域名部署。
  */
 function resolveAllowedHosts(): string[] {
-  const base = ["127.0.0.1", "localhost", "mcp.iceywu.cn"];
+  const base = ["127.0.0.1", "localhost", "mcp.levwu.me"];
   const extra = (process.env.MCP_ALLOWED_HOSTS ?? "")
     .split(",")
     .map((h) => h.trim())

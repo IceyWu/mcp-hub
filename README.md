@@ -6,14 +6,14 @@
 
 一个域名，多个可直接连接的 MCP 服务。无需本地安装，复制配置即可让 AI Agent 调用腾讯文档和 WordsEssence 工具。
 
-🌐 [服务主页](https://mcp.iceywu.cn) · [WordsEssence 官网](https://wd.iceywu.cn/) · [MCP 协议](https://modelcontextprotocol.io)
+🌐 [服务主页](https://mcp.levwu.me) · [WordsEssence 官网](https://wd.levwu.me/) · [MCP 协议](https://modelcontextprotocol.io)
 
 ## 已接入服务
 
 | 服务 | 地址 | 能力 | 鉴权 |
 | --- | --- | --- | --- |
-| [Tencent Docs MCP](./mcp-servers/tencent-docs/README.md) | `https://mcp.iceywu.cn/tencent-docs/` | 腾讯文档列表、记录读写、附件读取和 Bug 表创建 | Header 凭证 |
-| [WordsEssence MCP](./mcp-servers/wordsessence/README.md) | `https://mcp.iceywu.cn/wordsessence/` | 书摘查询、新增、更新和软删除 | 当前可直接连接 |
+| [Tencent Docs MCP](./mcp-servers/tencent-docs/README.md) | `https://mcp.levwu.me/tencent-docs/` | 腾讯文档列表、记录读写、附件读取和 Bug 表创建 | Header 凭证 |
+| [WordsEssence MCP](./mcp-servers/wordsessence/README.md) | `https://mcp.levwu.me/wordsessence/` | 书摘查询、新增、更新和软删除 | 当前可直接连接 |
 
 ## 远程连接
 
@@ -24,7 +24,7 @@
   "mcpServers": {
     "tencent-docs": {
       "type": "http",
-      "url": "https://mcp.iceywu.cn/tencent-docs/",
+      "url": "https://mcp.levwu.me/tencent-docs/",
       "headers": {
         "x-tencent-client-id": "<your-id>",
         "x-tencent-access-token": "<your-token>",
@@ -33,7 +33,7 @@
     },
     "wordsessence": {
       "type": "http",
-      "url": "https://mcp.iceywu.cn/wordsessence/"
+      "url": "https://mcp.levwu.me/wordsessence/"
     }
   }
 }

@@ -26,7 +26,7 @@
   "mcpServers": {
     "tencent-docs": {
       "type": "http",
-      "url": "https://mcp.iceywu.cn/tencent-docs/",
+      "url": "https://mcp.levwu.me/tencent-docs/",
       "headers": {
         "x-tencent-client-id": "你的_client_id",
         "x-tencent-access-token": "你的_access_token",
@@ -76,7 +76,7 @@
 ## 传输模式
 
 - **stdio**（默认）：凭证从环境变量读取；stdout 仅用于协议通信，日志走 stderr
-- **Streamable HTTP**：`node index.js --http` 或 `MCP_TRANSPORT=http`。端口 `PORT`（默认 3001），凭证从请求头 `x-tencent-*` 读取。Host 白名单默认放行 `127.0.0.1` / `localhost` / `mcp.iceywu.cn`，其它域名用 `MCP_ALLOWED_HOSTS`（逗号分隔）追加
+- **Streamable HTTP**：`node index.js --http` 或 `MCP_TRANSPORT=http`。端口 `PORT`（默认 3001），凭证从请求头 `x-tencent-*` 读取。Host 白名单默认放行 `127.0.0.1` / `localhost` / `mcp.levwu.me`，其它域名用 `MCP_ALLOWED_HOSTS`（逗号分隔）追加
 
 ## 典型流程：Bug 跟踪
 

@@ -1,6 +1,6 @@
 # WordsEssence MCP
 
-为 [WordsEssence](https://github.com/IceyWu/WordsEssence) 提供的 MCP 服务，通过 `https://wd.iceywu.cn/service` 管理书摘。
+为 [WordsEssence](https://github.com/IceyWu/WordsEssence) 提供的 MCP 服务，通过 `https://wd.levwu.me/service` 管理书摘。
 
 ## 工具
 
@@ -16,7 +16,7 @@
 
 | 环境变量 | 默认值/作用 |
 | --- | --- |
-| `WD_API_BASE_URL` | `https://wd.iceywu.cn/service` |
+| `WD_API_BASE_URL` | `https://wd.levwu.me/service` |
 | `WD_API_TOKEN` | 可选，作为 Bearer Token 发送 |
 | `WD_API_KEY` | 可选，作为 `X-Api-Key` 发送 |
 | `MCP_TRANSPORT` | 设为 `http` 启用 Streamable HTTP；否则使用 stdio |
@@ -45,7 +45,7 @@
   "mcpServers": {
     "wordsessence": {
       "type": "http",
-      "url": "https://mcp.iceywu.cn/wordsessence/"
+      "url": "https://mcp.levwu.me/wordsessence/"
     }
   }
 }
@@ -78,7 +78,7 @@ pnpm dev
 `agent/connections/wordsessence.ts` 本地默认连接 `http://127.0.0.1:3002/`。部署 eve 时设置：
 
 ```ini
-WORDSESSENCE_MCP_URL=https://mcp.iceywu.cn/wordsessence/
+WORDSESSENCE_MCP_URL=https://mcp.levwu.me/wordsessence/
 ```
 
 eve 会自动放行查询工具；新增、更新和删除书摘会要求用户确认。

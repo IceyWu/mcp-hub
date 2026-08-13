@@ -11,16 +11,27 @@ interface Props {
 
 const { t, locale } = Astro.props;
 const serviceBase = locale === "zh-CN" ? "/services" : "/en/services";
-const cardLabels = locale === "zh-CN"
-  ? { tools6: "6 个工具", tools5: "5 个工具", auth: "Header 鉴权", write: "支持写入" }
-  : { tools6: "6 tools", tools5: "5 tools", auth: "Header auth", write: "Write capable" };
+const cardLabels =
+  locale === "zh-CN"
+    ? {
+        tools6: "6 个工具",
+        tools5: "5 个工具",
+        auth: "Header 鉴权",
+        write: "支持写入",
+      }
+    : {
+        tools6: "6 tools",
+        tools5: "5 tools",
+        auth: "Header auth",
+        write: "Write capable",
+      };
 
 const mcpConfigLines = [
   "{",
   '  "mcpServers": {',
   '    "tencent-docs": {',
   '      "type": "http",',
-  '      "url": "https://mcp.iceywu.cn/tencent-docs/",',
+  '      "url": "https://mcp.levwu.me/tencent-docs/",',
   '      "headers": {',
   '        "x-tencent-client-id": "&lt;your-id&gt;",',
   '        "x-tencent-access-token": "&lt;your-token&gt;",',
@@ -29,7 +40,7 @@ const mcpConfigLines = [
   "    },",
   '    "wordsessence": {',
   '      "type": "http",',
-  '      "url": "https://mcp.iceywu.cn/wordsessence/"',
+  '      "url": "https://mcp.levwu.me/wordsessence/"',
   "    }",
   "  }",
   "}",
@@ -39,7 +50,7 @@ const mcpConfigCopy = `{
   "mcpServers": {
     "tencent-docs": {
       "type": "http",
-      "url": "https://mcp.iceywu.cn/tencent-docs/",
+      "url": "https://mcp.levwu.me/tencent-docs/",
       "headers": {
         "x-tencent-client-id": "<your-id>",
         "x-tencent-access-token": "<your-token>",
@@ -48,7 +59,7 @@ const mcpConfigCopy = `{
     },
     "wordsessence": {
       "type": "http",
-      "url": "https://mcp.iceywu.cn/wordsessence/"
+      "url": "https://mcp.levwu.me/wordsessence/"
     }
   }
 }`;
@@ -61,25 +72,38 @@ const mcpConfigCopy = `{
   <p class="desc">{t.desc}</p>
   <p class="usage">{t.usage}</p>
 
-  <CodeBlock
-    configText={mcpConfig}
-    copyText={mcpConfigCopy}
-  />
+  <CodeBlock configText={mcpConfig} copyText={mcpConfigCopy} />
 
   <section class="section">
     <h2 class="section-title">{t.services}</h2>
     <div class="cards">
       <a href={`${serviceBase}/tencent-docs/`} class="card">
-        <span class="card-top"><span class="card-title">{t.service1Name}</span><span class="card-arrow">→</span></span>
+        <span class="card-top"
+          ><span class="card-title">{t.service1Name}</span><span
+            class="card-arrow">→</span
+          ></span
+        >
         <span class="card-desc">{t.service1Desc}</span>
         <span class="card-detail">{t.service1Detail}</span>
-        <span class="service-meta"><span class="pill">Streamable HTTP</span><span class="pill">{cardLabels.tools6}</span><span class="pill">{cardLabels.auth}</span></span>
+        <span class="service-meta"
+          ><span class="pill">Streamable HTTP</span><span class="pill"
+            >{cardLabels.tools6}</span
+          ><span class="pill">{cardLabels.auth}</span></span
+        >
       </a>
       <a href={`${serviceBase}/wordsessence/`} class="card">
-        <span class="card-top"><span class="card-title">{t.service2Name}</span><span class="card-arrow">→</span></span>
+        <span class="card-top"
+          ><span class="card-title">{t.service2Name}</span><span
+            class="card-arrow">→</span
+          ></span
+        >
         <span class="card-desc">{t.service2Desc}</span>
         <span class="card-detail">{t.service2Detail}</span>
-        <span class="service-meta"><span class="pill">Streamable HTTP</span><span class="pill">{cardLabels.tools5}</span><span class="pill">{cardLabels.write}</span></span>
+        <span class="service-meta"
+          ><span class="pill">Streamable HTTP</span><span class="pill"
+            >{cardLabels.tools5}</span
+          ><span class="pill">{cardLabels.write}</span></span
+        >
       </a>
     </div>
   </section>
