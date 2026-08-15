@@ -1,6 +1,6 @@
 # WordsEssence MCP
 
-为 [WordsEssence](https://github.com/IceyWu/WordsEssence) 提供的 MCP 服务，通过 `https://wd.levwu.me/service` 管理书摘。
+为 [WordsEssence](https://github.com/IceyWu/WordsEssence) 提供的 MCP 服务，通过 `https://wd.levwu.me` 管理书摘。
 
 ## 工具
 
@@ -16,7 +16,7 @@
 
 | 环境变量 | 默认值/作用 |
 | --- | --- |
-| `WD_API_BASE_URL` | `https://wd.levwu.me/service` |
+| `WD_API_BASE_URL` | `https://wd.levwu.me` |
 | `WD_API_TOKEN` | 可选，作为 Bearer Token 发送 |
 | `WD_API_KEY` | 可选，作为 `X-Api-Key` 发送 |
 | `MCP_TRANSPORT` | 设为 `http` 启用 Streamable HTTP；否则使用 stdio |

@@ -1,4 +1,4 @@
-const DEFAULT_BASE_URL = "https://wd.levwu.me/service";
+const DEFAULT_BASE_URL = "https://wd.levwu.me";
 
 export type ApiEnvelope<T> = {
   code?: number;
