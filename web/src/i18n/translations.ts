@@ -12,6 +12,9 @@ export interface Translations {
   service2Name: string;
   service2Desc: string;
   service2Detail: string;
+  service3Name: string;
+  service3Desc: string;
+  service3Detail: string;
   howTitle: string;
   howDesc: string;
   moreTitle: string;
@@ -29,9 +32,9 @@ export interface Translations {
 const zh: Translations = {
   role: "AI Agent 的 MCP 服务中心",
   title: "为你的 AI Agent\n接入 MCP 工具",
-  desc: "一个域名，连接多个 MCP 服务。复制配置，即可让 AI Agent 调用腾讯文档与 WordsEssence 工具。",
+  desc: "一个域名，连接多个 MCP 服务。复制配置，即可让 AI Agent 调用腾讯文档、WordsEssence 与 levwu 工具。",
   usage:
-    "已有服务：Tencent Docs MCP 与 WordsEssence MCP，覆盖腾讯文档读写和书摘管理。",
+    "已有服务：Tencent Docs MCP、WordsEssence MCP 与 levwu MCP，覆盖腾讯文档读写、书摘管理和 AI 任务。",
   services: "已接入服务",
   service1Name: "Tencent Docs MCP",
   service1Desc: "读写腾讯文档的 MCP 服务",
@@ -41,9 +44,13 @@ const zh: Translations = {
   service2Desc: "记录与管理美好文字片段",
   service2Detail:
     "支持查询、新增、更新和软删除书摘，共 5 个工具；写入前请确认目标内容",
+  service3Name: "levwu MCP",
+  service3Desc: "你的个人 API 聚合入口",
+  service3Detail:
+    "统一 AI 任务服务：OCR 识别、AI 图片编辑与天气查询，共 3 个工具；未来新接口都在此扩展",
   howTitle: "连接方式",
   howDesc:
-    "所有服务通过统一域名访问，并按路径区分。Tencent Docs 使用 Header 凭证；WordsEssence 当前可直接连接，无需本地安装。",
+    "所有服务通过统一域名访问，并按路径区分。Tencent Docs 使用 Header 凭证；WordsEssence 与 levwu 当前可直接连接，无需本地安装。",
   moreTitle: "接入你的 MCP",
   moreDesc:
     "有好的 MCP 服务想部署？MCP Hub 支持 Dockerfile 一键部署，提交 PR 即可接入。让你的工具被更多 AI Agent 使用。",
@@ -60,9 +67,9 @@ const zh: Translations = {
 const en: Translations = {
   role: "MCP Service Hub for AI Agents",
   title: "Connect MCP Tools\nto Your AI Agent",
-  desc: "One domain for multiple MCP services. Copy the config to connect your AI agent to Tencent Docs and WordsEssence tools.",
+  desc: "One domain for multiple MCP services. Copy the config to connect your AI agent to Tencent Docs, WordsEssence, and levwu tools.",
   usage:
-    "Live: Tencent Docs MCP and WordsEssence MCP, covering document automation and excerpt management.",
+    "Live: Tencent Docs MCP, WordsEssence MCP, and levwu MCP, covering document automation, excerpt management, and AI tasks.",
   services: "Available Services",
   service1Name: "Tencent Docs MCP",
   service1Desc: "MCP service for Tencent Docs",
@@ -72,9 +79,13 @@ const en: Translations = {
   service2Desc: "Capture and manage memorable excerpts",
   service2Detail:
     "5 tools to list, create, update, and soft-delete excerpts; confirm content before write operations",
+  service3Name: "levwu MCP",
+  service3Desc: "Your personal API hub",
+  service3Detail:
+    "Unified AI task service: OCR, image editing, and weather — 3 tools; future interfaces land here",
   howTitle: "How to Connect",
   howDesc:
-    "All services share one domain and are routed by path. Tencent Docs uses header credentials; WordsEssence currently connects directly. No local install required.",
+    "All services share one domain and are routed by path. Tencent Docs uses header credentials; WordsEssence and levwu currently connect directly. No local install required.",
   moreTitle: "Add Your MCP",
   moreDesc:
     "Have an MCP service to deploy? MCP Hub supports one-click Dockerfile deployment. Submit a PR to get your tool in front of more AI agents.",

@@ -1,0 +1,35 @@
+{
+  "name": "levwu-mcp",
+  "version": "0.1.0",
+  "description": "Lev Wu 个人 API 聚合 MCP —— 统一 AI 任务服务（OCR、AI 图片编辑、天气查询）等自有接口的聚合入口",
+  "type": "module",
+  "bin": {
+    "levwu-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "pnpm run build && node --env-file=../../.env.local dist/index.js --http",
+    "prepublishOnly": "pnpm run build"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "levwu",
+    "ocr",
+    "image-edit",
+    "weather",
+    "ai"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "zod": "4.4.3"
+  }
+}

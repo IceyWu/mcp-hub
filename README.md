@@ -14,6 +14,7 @@
 | --- | --- | --- | --- |
 | [Tencent Docs MCP](./mcp-servers/tencent-docs/README.md) | `https://mcp.levwu.me/tencent-docs/` | 腾讯文档列表、记录读写、附件读取和 Bug 表创建 | Header 凭证 |
 | [WordsEssence MCP](./mcp-servers/wordsessence/README.md) | `https://mcp.levwu.me/wordsessence/` | 书摘查询、新增、更新和软删除 | 当前可直接连接 |
+| [levwu MCP](./mcp-servers/levwu/README.md) | `https://mcp.levwu.me/levwu/` | 个人 API 聚合入口：AI 任务（OCR、图片编辑、天气），未来新接口都在此扩展 | 当前无需认证 |
 
 ## 远程连接
 
@@ -34,6 +35,10 @@
     "wordsessence": {
       "type": "http",
       "url": "https://mcp.levwu.me/wordsessence/"
+    },
+    "levwu": {
+      "type": "http",
+      "url": "https://mcp.levwu.me/levwu/"
     }
   }
 }
@@ -55,6 +60,7 @@ pnpm install
 | --- | --- |
 | `pnpm dev` | eve Agent 界面 |
 | `pnpm dev:wordsessence` | WordsEssence MCP，默认监听 `http://127.0.0.1:3002/` |
+| `pnpm dev:levwu` | levwu 聚合 MCP，默认监听 `http://127.0.0.1:3003/` |
 | `pnpm dev:web` | Astro 文档站，默认监听 `http://localhost:4321/` |
 | `pnpm build:mcp` | 构建全部 MCP 服务 |
 | `pnpm build:web` | 构建静态文档站 |
@@ -80,7 +86,8 @@ agent/                       # eve Agent 入口、工具和 MCP 连接
 └── tools/
 mcp-servers/
 ├── tencent-docs/            # Tencent Docs MCP（HTTP + stdio）
-└── wordsessence/            # WordsEssence MCP（HTTP + stdio）
+├── wordsessence/            # WordsEssence MCP（HTTP + stdio）
+└── levwu/                   # levwu 个人 API 聚合 MCP（HTTP + stdio）
 web/                         # Astro 中英文静态站点
 deploy/                      # nginx 与 supervisord 配置
 Dockerfile                   # MCP 服务与静态站点的单容器构建
@@ -91,8 +98,8 @@ Dockerfile                   # MCP 服务与静态站点的单容器构建
 根目录 `Dockerfile` 会完成以下工作：
 
 1. 安装锁定依赖并构建两个 MCP 服务和静态站点。
-2. 由 Supervisor 运行 Tencent Docs MCP、WordsEssence MCP 和 nginx。
-3. 通过 nginx 将 `/tencent-docs/`、`/wordsessence/` 和静态页面统一暴露在 80 端口。
+2. 由 Supervisor 运行 Tencent Docs MCP、WordsEssence MCP、levwu MCP 和 nginx。
+3. 通过 nginx 将 `/tencent-docs/`、`/wordsessence/`、`/levwu/` 和静态页面统一暴露在 80 端口。
 
 因此可以直接部署到 Coolify 等支持 Dockerfile 的容器平台。
 

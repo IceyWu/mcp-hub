@@ -33,6 +33,7 @@ COPY --from=builder /app/web/dist /var/www/html
 # MCP server
 COPY --from=builder /app/mcp-servers/tencent-docs/dist /app/mcp-server
 COPY --from=builder /app/mcp-servers/wordsessence/dist /app/wordsessence-mcp
+COPY --from=builder /app/mcp-servers/levwu/dist /app/levwu-mcp
 COPY --from=builder /app/node_modules /app/node_modules
 
 # supervisor

@@ -16,12 +16,14 @@ const cardLabels =
     ? {
         tools6: "6 个工具",
         tools5: "5 个工具",
+        tools3: "3 个工具",
         auth: "Header 鉴权",
         write: "支持写入",
       }
     : {
         tools6: "6 tools",
         tools5: "5 tools",
+        tools3: "3 tools",
         auth: "Header auth",
         write: "Write capable",
       };
@@ -41,6 +43,10 @@ const mcpConfigLines = [
   '    "wordsessence": {',
   '      "type": "http",',
   '      "url": "https://mcp.levwu.me/wordsessence/"',
+  "    },",
+  '    "levwu": {',
+  '      "type": "http",',
+  '      "url": "https://mcp.levwu.me/levwu/"',
   "    }",
   "  }",
   "}",
@@ -60,6 +66,10 @@ const mcpConfigCopy = `{
     "wordsessence": {
       "type": "http",
       "url": "https://mcp.levwu.me/wordsessence/"
+    },
+    "levwu": {
+      "type": "http",
+      "url": "https://mcp.levwu.me/levwu/"
     }
   }
 }`;
@@ -102,6 +112,20 @@ const mcpConfigCopy = `{
         <span class="service-meta"
           ><span class="pill">Streamable HTTP</span><span class="pill"
             >{cardLabels.tools5}</span
+          ><span class="pill">{cardLabels.write}</span></span
+        >
+      </a>
+      <a href={`${serviceBase}/levwu/`} class="card">
+        <span class="card-top"
+          ><span class="card-title">{t.service3Name}</span><span
+            class="card-arrow">→</span
+          ></span
+        >
+        <span class="card-desc">{t.service3Desc}</span>
+        <span class="card-detail">{t.service3Detail}</span>
+        <span class="service-meta"
+          ><span class="pill">Streamable HTTP</span><span class="pill"
+            >{cardLabels.tools3}</span
           ><span class="pill">{cardLabels.write}</span></span
         >
       </a>

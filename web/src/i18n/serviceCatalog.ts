@@ -1,4 +1,4 @@
-export type ServiceSlug = "tencent-docs" | "wordsessence";
+export type ServiceSlug = "tencent-docs" | "wordsessence" | "levwu";
 
 export interface ServiceDetail {
   slug: ServiceSlug;
@@ -91,6 +91,46 @@ const zh: Record<ServiceSlug, ServiceDetail> = {
     sourceUrl: "https://github.com/IceyWu/WordsEssence",
     sourceLabel: "查看源代码",
   },
+  levwu: {
+    slug: "levwu",
+    name: "levwu MCP",
+    kicker: "个人 API 聚合入口",
+    lead: "Lev Wu 个人 API 聚合 MCP：一个入口承载所有自有接口，未来新接口都以模块形式加入这里。当前接入统一 AI 任务服务，支持 OCR 文字识别、AI 图片编辑与天气查询。",
+    endpoint: "https://mcp.levwu.me/levwu/",
+    auth: "当前无需认证。OCR / 图片编辑任务属于写操作，应在执行前确认。",
+    config: `{
+  "mcpServers": {
+    "levwu": {
+      "type": "http",
+      "url": "https://mcp.levwu.me/levwu/"
+    }
+  }
+}`,
+    tools: [
+      {
+        name: "ai_submit_task",
+        description: "提交 OCR / 图片编辑任务，返回 task_id 用于轮询",
+      },
+      {
+        name: "ai_get_task",
+        description: "按 task_id 查询任务状态和结果",
+      },
+      {
+        name: "ai_query_weather",
+        description: "查询地点未来 7 天 + 24 小时逐时天气",
+      },
+    ],
+    note: "levwu 是聚合入口，后续新接口都会以模块形式加入这里，工具名统一使用 模块名_操作 前缀（当前为 ai_）。",
+    steps: [
+      "复制连接配置",
+      "在支持 Streamable HTTP 的客户端中连接",
+      "先用 ai_query_weather 或 ai_get_task 验证读取，再按需调用 ai_submit_task",
+    ],
+    projectUrl: "https://api.lpalette.cn/ai/docs",
+    projectLabel: "查看 AI API 文档",
+    sourceUrl: "https://github.com/IceyWu/mcp-hub/tree/main/mcp-servers/levwu",
+    sourceLabel: "查看源代码",
+  },
 };
 
 const en: Record<ServiceSlug, ServiceDetail> = {
@@ -155,6 +195,35 @@ const en: Record<ServiceSlug, ServiceDetail> = {
       "Verify reads with list_excerpts before using write tools",
     ],
     projectLabel: "Visit WordsEssence",
+    sourceLabel: "View source",
+  },
+  levwu: {
+    ...zh.levwu,
+    kicker: "Personal API hub",
+    lead: "Lev Wu's personal API aggregation MCP: one entry for all owned services, extended with modules as new interfaces are added. Currently integrates the unified AI task service — OCR text recognition, AI image editing, and weather.",
+    auth: "No authentication required. OCR / image editing are write operations; confirm before execution.",
+    tools: [
+      {
+        name: "ai_submit_task",
+        description:
+          "Submit an OCR / image-edit task, returns a task_id to poll",
+      },
+      {
+        name: "ai_get_task",
+        description: "Query task status and result by task_id",
+      },
+      {
+        name: "ai_query_weather",
+        description: "Query 7-day and 24-hour weather for a location",
+      },
+    ],
+    note: "levwu is an aggregation hub: future interfaces are added here as modules, with tools namespaced as module_action (currently ai_).",
+    steps: [
+      "Copy the connection config",
+      "Connect from a Streamable HTTP client",
+      "Verify reads with ai_query_weather or ai_get_task before calling ai_submit_task",
+    ],
+    projectLabel: "View AI API docs",
     sourceLabel: "View source",
   },
 };

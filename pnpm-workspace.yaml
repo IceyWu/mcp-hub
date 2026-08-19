@@ -1,6 +1,7 @@
 packages:
   - "mcp-servers/tencent-docs"
   - "mcp-servers/wordsessence"
+  - "mcp-servers/levwu"
   - "web"
 minimumReleaseAgeExclude:
   - "@ai-sdk/*"

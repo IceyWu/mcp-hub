@@ -19,9 +19,10 @@
   },
   "scripts": {
     "build": "eve build",
-    "build:mcp": "pnpm --filter tencent-docs-mcp build && pnpm --filter wordsessence-mcp build",
+    "build:mcp": "pnpm --filter tencent-docs-mcp build && pnpm --filter wordsessence-mcp build && pnpm --filter levwu-mcp build",
     "dev:web": "pnpm --filter web dev",
     "dev:wordsessence": "pnpm --filter wordsessence-mcp dev",
+    "dev:levwu": "pnpm --filter levwu-mcp dev",
     "build:web": "pnpm --filter web build",
     "dev": "eve dev",
     "start": "eve start",
