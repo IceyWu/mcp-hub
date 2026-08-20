@@ -4,7 +4,7 @@ Lev Wu 个人 API 聚合 MCP —— 一个入口承载所有自有接口，未�
 
 当前已接入模块：
 
-- **AI 任务服务**（`ai_*`）：基于 `https://api.lpalette.cn` 的统一 AI 任务服务，OCR 文字识别 + AI 图片编辑（gpt-image-2）+ 天气查询。
+- **AI 任务服务**（`ai_*`）：基于 `https://api.lpalette.cn` 的统一 AI 任务服务，OCR 文字识别 + 图片理解 + AI 图片编辑（gpt-image-2）+ 天气查询。
 
 ## 工具
 
@@ -12,7 +12,7 @@ Lev Wu 个人 API 聚合 MCP —— 一个入口承载所有自有接口，未�
 
 | 工具 | 说明 | 操作 |
 | --- | --- | --- |
-| `ai_submit_task` | 提交 OCR / 图片编辑任务，返回 `task_id` | 写 |
+| `ai_submit_task` | 提交 OCR / 图片理解 / 图片编辑任务，返回 `task_id` | 写 |
 | `ai_get_task` | 按 `task_id` 查询任务状态和结果 | 读 |
 | `ai_query_weather` | 查询地点未来 7 天 + 24 小时逐时天气 | 读 |
 
@@ -24,7 +24,13 @@ Lev Wu 个人 API 聚合 MCP —— 一个入口承载所有自有接口，未�
 
 支持格式 png/jpg/jpeg/gif/webp/bmp，最大 20MB。
 
-提交是异步的：先用 `ai_submit_task` 拿到 `task_id`，再用 `ai_get_task` 轮询。建议间隔：OCR 1-2 秒，图片编辑 3-5 秒。提交任务属于写操作，Agent 应在调用前向用户确认。
+`type` 支持三种：
+
+- `ocr`：OCR 文字识别，`provider` 可选（`zhipu` 默认免费 / `siliconflow`）
+- `image_understanding`：图片理解，返回结构化 JSON（summary/scene/objects/text/detail）
+- `image_edit`：AI 图片编辑（必填 `prompt`，`size` 可选）
+
+提交是异步的：先用 `ai_submit_task` 拿到 `task_id`，再用 `ai_get_task` 轮询。完成时按类型返回：OCR → `text`，图片理解 → `understanding`，图片编辑 → `image_base64`。建议间隔：OCR / 图片理解 1-2 秒，图片编辑 3-5 秒。提交任务属于写操作，Agent 应在调用前向用户确认。
 
 ## 配置
 

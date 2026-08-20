@@ -2,7 +2,8 @@
  * AI 任务服务模块（ai_*）
  *
  * 后端：https://api.lpalette.cn —— 统一 AI 任务服务
- *   - OCR 文字识别（Qwen3-VL）
+ *   - OCR 文字识别（智谱 GLM-4V-Flash / 硅基流动 Qwen-VL）
+ *   - 图片理解（智谱 GLM-4V-Flash，结构化 JSON）
  *   - AI 图片编辑（gpt-image-2）
  *   - 天气查询（高德地图 / 中国气象局数据）
  *
@@ -44,21 +45,38 @@ function parseDataUrl(dataUrl: string): { mime: string; data: string } {
   return { mime: match[1], data: match[3] };
 }
 
+type TaskType = "ocr" | "image_understanding" | "image_edit";
+
+/** 任务类型 -> 提交端点（接口拆分后的独立路径）。 */
+const TASK_ENDPOINTS: Record<TaskType, string> = {
+  ocr: "/ai/api/v1/ocr",
+  image_understanding: "/ai/api/v1/image-understanding",
+  image_edit: "/ai/api/v1/image-edit",
+};
+
 type SubmitTaskData = {
   task_id: string;
-  type: "ocr" | "image_edit";
+  type: TaskType;
   status: "pending";
 };
 
 type TaskResultData = {
   task_id: string;
-  type: "ocr" | "image_edit";
+  type: TaskType;
   status: "pending" | "processing" | "completed" | "failed";
   created_at: number;
   completed_at?: number | null;
   elapsed_seconds?: number | null;
   /** OCR 识别结果文字（仅 type=ocr 且 completed 时有） */
   text?: string | null;
+  /** 图片理解结构化 JSON（仅 type=image_understanding 且 completed 时有） */
+  understanding?: {
+    summary?: string;
+    scene?: string;
+    objects?: string[];
+    text?: string;
+    detail?: string;
+  } | null;
   /** 编辑后图片的 base64 data URL（仅 type=image_edit 且 completed 时有） */
   image_base64?: string | null;
   /** 错误信息（仅 failed 时有） */
@@ -98,13 +116,15 @@ export function registerAiModule(server: McpServer): void {
   server.registerTool(
     "ai_submit_task",
     {
-      title: "提交 AI 任务（OCR / 图片编辑）",
+      title: "提交 AI 任务（OCR / 图片理解 / 图片编辑）",
       description:
-        "向统一 AI 任务服务提交任务。type=ocr 识别图片文字；type=image_edit 用提示词编辑图片（必填 prompt）。图片来源三选一：image_url（远程 URL）、file_path（本地文件路径）或 image_data（base64 data URL，png/jpg/jpeg/gif/webp/bmp，最大 20MB）。提交后返回 task_id，再用 ai_get_task 轮询结果。这是写操作。",
+        "向统一 AI 任务服务提交任务。type=ocr 识别图片文字；type=image_understanding 返回结构化图片理解（summary/scene/objects/text/detail）；type=image_edit 用提示词编辑图片（必填 prompt）。图片来源三选一：image_url / file_path / image_data（png/jpg/jpeg/gif/webp/bmp，最大 20MB）。提交后返回 task_id，再用 ai_get_task 轮询结果。这是写操作。",
       inputSchema: {
         type: z
-          .enum(["ocr", "image_edit"])
-          .describe("任务类型：ocr=文字识别，image_edit=图片编辑"),
+          .enum(["ocr", "image_understanding", "image_edit"])
+          .describe(
+            "任务类型：ocr=文字识别，image_understanding=图片理解（结构化 JSON），image_edit=图片编辑",
+          ),
         image_url: z
           .string()
           .optional()
@@ -119,17 +139,31 @@ export function registerAiModule(server: McpServer): void {
           .describe(
             "图片的 base64 data URL（如 data:image/png;base64,...，三选一）。聊天中直接提供图片内容时用",
           ),
+        provider: z
+          .enum(["zhipu", "siliconflow"])
+          .optional()
+          .describe(
+            "OCR 识别渠道：zhipu=智谱 GLM-4V-Flash（默认，免费），siliconflow=硅基流动 Qwen-VL。仅 type=ocr 有效",
+          ),
         prompt: z
           .string()
           .optional()
-          .describe("提示词。OCR 可选（不填用默认），图片编辑必填"),
+          .describe("提示词。OCR/图片理解可选（不填用默认），图片编辑必填"),
         size: z
           .string()
           .optional()
           .describe("输出尺寸（仅 image_edit 有效），默认 1024x1024"),
       },
     },
-    async ({ type, image_url, file_path, image_data, prompt, size }) => {
+    async ({
+      type,
+      image_url,
+      file_path,
+      image_data,
+      provider,
+      prompt,
+      size,
+    }) => {
       const sources = [image_url, file_path, image_data].filter(Boolean).length;
       if (sources === 0) {
         throw new Error(
@@ -141,9 +175,12 @@ export function registerAiModule(server: McpServer): void {
       }
 
       const form = new FormData();
-      form.append("type", type);
       if (prompt) form.append("prompt", prompt);
-      if (size) form.append("size", size);
+      if (type === "ocr") {
+        if (provider) form.append("provider", provider);
+      } else if (type === "image_edit") {
+        if (size) form.append("size", size);
+      }
       if (file_path) {
         const buffer = readFileSync(file_path);
         form.append(
@@ -164,7 +201,7 @@ export function registerAiModule(server: McpServer): void {
 
       const data = await apiRequest<SubmitTaskData>(
         BASE_URL,
-        "/ai/api/v1/task",
+        TASK_ENDPOINTS[type],
         {
           method: "POST",
           formData: form,
@@ -180,7 +217,7 @@ export function registerAiModule(server: McpServer): void {
     {
       title: "查询 AI 任务状态和结果",
       description:
-        "按 task_id 查询任务状态。pending=排队中，processing=处理中（含 elapsed_seconds），completed=已完成（OCR 返回 text，图片编辑返回 image_base64），failed=含 error。建议轮询间隔：OCR 1-2 秒，图片编辑 3-5 秒。只读操作。",
+        "按 task_id 查询任务状态。pending=排队中，processing=处理中（含 elapsed_seconds），completed=已完成（OCR 返回 text，图片理解返回 understanding 结构化 JSON，图片编辑返回 image_base64），failed=含 error。建议轮询间隔：OCR / 图片理解 1-2 秒，图片编辑 3-5 秒。只读操作。",
       inputSchema: {
         task_id: z.string().min(1).describe("提交任务后返回的 task_id"),
       },
