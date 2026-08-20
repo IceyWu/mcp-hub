@@ -109,7 +109,8 @@ const zh: Record<ServiceSlug, ServiceDetail> = {
     tools: [
       {
         name: "ai_submit_task",
-        description: "提交 OCR / 图片理解 / 图片编辑任务，返回 task_id 用于轮询",
+        description:
+          "提交 OCR / 图片理解 / 图片编辑任务，返回 task_id 用于轮询",
       },
       {
         name: "ai_get_task",
@@ -201,12 +202,12 @@ const en: Record<ServiceSlug, ServiceDetail> = {
     ...zh.levwu,
     kicker: "Personal API hub",
     lead: "Lev Wu's personal API aggregation MCP: one entry for all owned services, extended with modules as new interfaces are added. Currently integrates the unified AI task service — OCR text recognition, image understanding, AI image editing, and weather.",
-    auth: "No authentication required. OCR / image understanding / image editing are write operations; confirm before execution.",,
+    auth: "No authentication required. OCR / image understanding / image editing are write operations; confirm before execution.",
     tools: [
       {
         name: "ai_submit_task",
         description:
-          "Submit an OCR / image-understanding / image-edit task, returns a task_id to poll",,
+          "Submit an OCR / image-understanding / image-edit task, returns a task_id to poll",
       },
       {
         name: "ai_get_task",
