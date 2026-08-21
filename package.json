@@ -37,6 +37,7 @@
     "@vercel/connect": "0.7.0",
     "ai": "^7.0.62",
     "eve": "^0.33.2",
+    "express": "5.2.1",
     "zod": "4.4.3"
   },
   "devDependencies": {
