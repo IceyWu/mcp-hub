@@ -38,6 +38,7 @@ Lev Wu 个人 API 聚合 MCP —— 一个入口承载所有自有接口，未�
 | --- | --- |
 | `AI_API_BASE_URL` | AI 任务服务地址，默认 `https://api.lpalette.cn` |
 | `MCP_TRANSPORT` | 设为 `http` 启用 Streamable HTTP；否则使用 stdio |
+| `MCP_BODY_LIMIT` | HTTP MCP 完整 JSON 请求体上限，默认 `32mb`；需与反向代理一致 |
 | `PORT` | HTTP 端口，默认 `3003` |
 | `MCP_ALLOWED_HOSTS` | HTTP 模式额外允许的 Host，逗号分隔 |
 

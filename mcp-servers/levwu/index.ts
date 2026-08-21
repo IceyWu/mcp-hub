@@ -16,10 +16,14 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
-import { createMcpExpressApp } from "@modelcontextprotocol/sdk/server/express.js";
+import { hostHeaderValidation } from "@modelcontextprotocol/sdk/server/middleware/hostHeaderValidation.js";
+import express from "express";
 import { registerModules } from "./modules/index.js";
 
 const SERVER_VERSION = "0.1.0";
+// A 20 MiB image expands to about 26.7 MiB as base64. Leave room for the
+// JSON-RPC envelope and prompt while keeping the public endpoint bounded.
+const DEFAULT_BODY_LIMIT = "32mb";
 
 /** 每个连接（stdio）或每个 HTTP 请求（无状态模式）都用独立实例，避免状态串扰。 */
 function createServer(): McpServer {
@@ -37,10 +41,35 @@ async function startHttp(port: number): Promise<void> {
   ]
     .map((host) => host.trim())
     .filter(Boolean);
-  const app = createMcpExpressApp({
-    host: "127.0.0.1",
-    allowedHosts: [...new Set(allowedHosts)],
-  });
+  const app = express();
+  app.use(express.json({ limit: process.env.MCP_BODY_LIMIT ?? DEFAULT_BODY_LIMIT }));
+  app.use(
+    (
+      error: unknown,
+      _req: express.Request,
+      res: express.Response,
+      next: express.NextFunction,
+    ) => {
+      if (
+        typeof error === "object" &&
+        error !== null &&
+        "type" in error &&
+        error.type === "entity.too.large"
+      ) {
+        res.status(413).json({
+          jsonrpc: "2.0",
+          error: {
+            code: -32000,
+            message: `Request body exceeds ${process.env.MCP_BODY_LIMIT ?? DEFAULT_BODY_LIMIT} limit`,
+          },
+          id: null,
+        });
+        return;
+      }
+      next(error);
+    },
+  );
+  app.use(hostHeaderValidation([...new Set(allowedHosts)]));
 
   app.post("/", async (req: any, res: any) => {
     const server = createServer();

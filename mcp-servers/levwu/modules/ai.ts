@@ -17,6 +17,7 @@ import { basename, extname } from "node:path";
 import { apiRequest, jsonResult } from "../lib/client.js";
 
 const BASE_URL = process.env.AI_API_BASE_URL ?? "https://api.lpalette.cn";
+const MAX_IMAGE_BYTES = 20 * 1024 * 1024;
 
 /** 图片扩展名 -> MIME 类型。服务端按 Content-Type 校验图片格式，必须正确指定。 */
 const IMAGE_MIME: Record<string, string> = {
@@ -190,9 +191,13 @@ export function registerAiModule(server: McpServer): void {
         );
       } else if (image_data) {
         const { mime, data } = parseDataUrl(image_data);
+        const buffer = Buffer.from(data, "base64");
+        if (buffer.byteLength > MAX_IMAGE_BYTES) {
+          throw new Error("图片超过 20MB 上限");
+        }
         form.append(
           "file",
-          new Blob([Buffer.from(data, "base64")], { type: mime }),
+          new Blob([buffer], { type: mime }),
           "image",
         );
       } else {
